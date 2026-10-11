@@ -1,12 +1,14 @@
 // CORS policy for the KIMS queue backend.
 //
-// Vercel frontend: https://kims-queue.vercel.app
-// Legacy frontend: https://yuv9799.github.io/queue-manage/
+// Backend is a long-running Express + Socket.io service hosted on a persistent
+// Node runtime. The frontend is hosted on Vercel; its origin(s) must be allowed
+// here so browsers can call the API cross-origin.
 //
 // The backend authenticates with Bearer tokens (Authorization header), not
 // cookies, so `credentials` stays false but the origin is strictly allowlisted
 // rather than wide-open `*`. Set CORS_ORIGINS in the backend env to add more.
 const DEFAULT_ORIGINS = [
+  'https://queuefrontend-eiyom3ypt-yuviraj.vercel.app', // deployed Vercel frontend
   'https://kims-queue.vercel.app',
   'https://yuv9799.github.io', // production GitHub Pages frontend
   'http://localhost:5173', // Vite dev server

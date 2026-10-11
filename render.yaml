@@ -29,7 +29,8 @@ services:
         value: /app/data/queue.db
       - key: JWT_SECRET
         generateValue: true
-      # The exact origin of the deployed Vercel frontend, e.g. https://my-app.vercel.app
+      # The deployed Vercel frontend origin (build/allow in config/cors.js).
+      # e.g. https://queuefrontend-eiyom3ypt-yuviraj.vercel.app
       - key: FRONTEND_URL
         sync: false
       # Extra comma-separated CORS origins (in addition to FRONTEND_URL and built-ins)

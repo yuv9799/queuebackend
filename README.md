@@ -5,11 +5,19 @@ Express + Socket.io + `node:sqlite` (built-in SQLite, zero native deps).
 ## Setup
 
 ```bash
-cd backend
 npm install
 npm run seed     # create KIMS sample data + demo users
 npm run dev      # start server on http://localhost:8080
 ```
+
+## Deployment
+
+Deploy on a **persistent Node host** (Render / Railway / Fly / VPS) — not Vercel
+serverless — because this service needs long-running Socket.io connections and a
+durable SQLite file. See [`DEPLOY_BACKEND.md`](DEPLOY_BACKEND.md) for the exact
+steps (Render blueprint `render.yaml`), environment variables, and how to point
+the Vercel frontend (`https://queuefrontend-eiyom3ypt-yuviraj.vercel.app/`) at the
+backend via `VITE_API_URL`.
 
 ## Demo users (seeded)
 
