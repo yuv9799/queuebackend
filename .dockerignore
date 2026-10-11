@@ -1,0 +1,14 @@
+# Keep dev data, local deps, and logs out of the image.
+node_modules
+data
+*.log
+*.err
+.env
+*.db
+*.db-wal
+*.db-shm
+.DS_Store
+.git
+.gitignore
+Dockerfile
+.dockerignore

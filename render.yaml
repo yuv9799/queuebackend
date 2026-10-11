@@ -1,0 +1,37 @@
+# Render blueprint for the KIMS Queue backend.
+#
+# This backend is a long-running Express + Socket.io service with a file-based
+# SQLite database (node:sqlite), so it must run on a PERSISTENT host — it is NOT
+# compatible with Vercel serverless functions. Deploy this blueprint to Render:
+#   dashboard.render.com -> New -> Blueprint -> select this repo.
+#
+# Use the Web Service / New service flow instead if you prefer. After deploying,
+# copy the public URL (e.g. https://kims-queue-backend.onrender.com) and set it as
+# the frontend's VITE_API_URL, and add that frontend origin to CORS below.
+services:
+  - type: web
+    name: kims-queue-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    disk:
+      name: sqlite-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8080
+      - key: TRUST_PROXY
+        value: "1"
+      - key: DB_PATH
+        value: /app/data/queue.db
+      - key: JWT_SECRET
+        generateValue: true
+      # The exact origin of the deployed Vercel frontend, e.g. https://my-app.vercel.app
+      - key: FRONTEND_URL
+        sync: false
+      # Extra comma-separated CORS origins (in addition to FRONTEND_URL and built-ins)
+      - key: CORS_ORIGINS
+        sync: false

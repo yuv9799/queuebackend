@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Dev database (SQLite)
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# Environment — never commit secrets or real env files
+.env
+.env.local
+.env.production
+.env.test
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temp
+*.err
+.dist/
+_ts2.mjs
