@@ -12,6 +12,7 @@ services:
   - type: web
     name: kims-queue-backend
     runtime: docker
+    plan: starter
     dockerfilePath: ./Dockerfile
     healthCheckPath: /health
     disk:
@@ -32,7 +33,9 @@ services:
       # The deployed Vercel frontend origin (build/allow in config/cors.js).
       # e.g. https://queuefrontend-eiyom3ypt-yuviraj.vercel.app
       - key: FRONTEND_URL
-        sync: false
+        value: https://queuefrontend-eiyom3ypt-yuviraj.vercel.app
+      - key: PUBLIC_APP_URL
+        value: https://queuefrontend-eiyom3ypt-yuviraj.vercel.app/
       # Extra comma-separated CORS origins (in addition to FRONTEND_URL and built-ins)
       - key: CORS_ORIGINS
         sync: false

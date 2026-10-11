@@ -107,6 +107,14 @@ test('CORS rejects unsupported localhost ports', async () => {
   });
 });
 
+test('health endpoint allows the deployed Vercel frontend origin', async () => {
+  const origin = 'https://queuefrontend-eiyom3ypt-yuviraj.vercel.app';
+  const res = await request(app).get('/health').set('Origin', origin);
+  assert.equal(res.status, 200);
+  assert.equal(res.headers['access-control-allow-origin'], origin);
+  assert.equal(res.body.ok, true);
+});
+
 // ── GET /auth/users ─────────────────────────────────────────────────────────
 
 test('GET /auth/users: admin returns { users: [...] }', async () => {
